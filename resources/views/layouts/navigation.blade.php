@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <small><i class="fas fa-truck"></i> Livraison gratuite dès 50€</small>
+                    <small><i class="fas fa-truck"></i> Livraison gratuite dès 50 TND</small>
                     <small class="ms-3"><i class="fas fa-undo-alt"></i> Retour sous 14 jours</small>
                 </div>
                 <div class="col-md-6 text-end">
@@ -52,7 +52,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
                                 <li><a class="dropdown-item" href="{{ route('orders.index') }}"><i class="fas fa-box"></i> Mes commandes</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i> Mon profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Mon profil</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
@@ -69,17 +69,18 @@
     </nav>
 
     <!-- Categories bar -->
-<div class="bg-light border-bottom">
-    <div class="container">
-        <div class="d-flex justify-content-center flex-wrap py-2">
-            @php
-                $categories = App\Models\Category::all();
-            @endphp
-            @foreach($categories as $category)
-            <a href="{{ route('categories.show', $category->slug) }}" class="text-dark text-decoration-none px-3 py-2 small fw-semibold">
-                {{ $category->name }}
-            </a>
-            @endforeach
+    <div class="bg-light border-bottom">
+        <div class="container">
+            <div class="d-flex justify-content-center flex-wrap py-2">
+                @php
+                    $categories = App\Models\Category::all();
+                @endphp
+                @foreach($categories as $category)
+                <a href="{{ route('categories.show', $category->slug) }}" class="text-dark text-decoration-none px-3 py-2 small fw-semibold">
+                    {{ $category->name }}
+                </a>
+                @endforeach
+            </div>
         </div>
     </div>
-</div>
+</header>
