@@ -41,6 +41,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('orders.index') }}"><i class="fas fa-box"></i> Commandes</a>
                     </li>
+                    
+                    <!-- Bouton Admin séparé -->
+                    <li class="nav-item">
+                        <a class="btn btn-outline-danger ms-2" href="{{ route('admin.login') }}">
+                            <i class="fas fa-user-shield"></i> Admin
+                        </a>
+                    </li>
+                    
                     @guest
                         <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="{{ route('login') }}">Connexion</a></li>
                         <li class="nav-item"><a class="btn btn-primary ms-2" href="{{ route('register') }}">Inscription</a></li>
@@ -53,6 +61,12 @@
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
                                 <li><a class="dropdown-item" href="{{ route('orders.index') }}"><i class="fas fa-box"></i> Mes commandes</a></li>
                                 <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Mon profil</a></li>
+                                
+                                @if(Auth::user()->role == 'admin')
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard Admin</a></li>
+                                @endif
+                                
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
