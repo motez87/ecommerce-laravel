@@ -45,6 +45,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/products/{id}/edit', [App\Http\Controllers\Admin\AdminManageProductController::class, 'edit'])->name('products.edit');
         Route::put('/products/{id}', [App\Http\Controllers\Admin\AdminManageProductController::class, 'update'])->name('products.update');
         Route::delete('/products/{product}', [App\Http\Controllers\Admin\AdminManageProductController::class, 'destroy'])->name('products.destroy');
+        
+        // Gestion des commandes
+        Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+        Route::put('/orders/{id}/validate', [App\Http\Controllers\Admin\OrderController::class, 'validateOrder'])->name('orders.validate');
+        Route::put('/orders/{id}/cancel', [App\Http\Controllers\Admin\OrderController::class, 'cancel'])->name('orders.cancel');
+        Route::delete('/orders/{id}', [App\Http\Controllers\Admin\OrderController::class, 'destroy'])->name('orders.destroy');
+        
+        // Facture pour admin
+        Route::get('/orders/{id}/invoice', [App\Http\Controllers\Admin\OrderController::class, 'invoice'])->name('orders.invoice');
     });
 });
 
@@ -64,13 +74,12 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     });
     
-    // Commandes
+    // Commandes (pour utilisateurs normaux)
     Route::prefix('orders')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('orders.index');
         Route::post('/checkout', [OrderController::class, 'store'])->name('orders.store');
         Route::get('/{order}', [OrderController::class, 'show'])->name('orders.show');
         Route::delete('/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
-        Route::get('/{order}/invoice', [OrderController::class, 'invoice'])->name('orders.invoice');
     });
     
     // Avis

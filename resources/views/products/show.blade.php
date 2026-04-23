@@ -12,7 +12,9 @@
         </div>
         <div class="col-md-6">
             <h1 class="mb-3">{{ $product->title }}</h1>
-            <p class="text-muted mb-3">Catégorie: {{ $product->category->name }}</p>
+            <p class="text-muted mb-3">
+                Catégorie: {{ $product->category ? $product->category->name : 'Non catégorisé' }}
+            </p>
             <h3 class="text-primary mb-3">{{ number_format($product->price, 3) }} TND</h3>
             <p class="mb-4">{{ $product->description }}</p>
             
@@ -36,7 +38,7 @@
     <div class="card mb-3 shadow-sm">
         <div class="card-body">
             <div class="d-flex justify-content-between">
-                <strong class="text-primary">{{ $review->user->name }}</strong>
+                <strong class="text-primary">{{ $review->user ? $review->user->name : 'Anonyme' }}</strong>
                 <div class="text-warning">
                     @for($i = 1; $i <= 5; $i++)
                         @if($i <= $review->rating)

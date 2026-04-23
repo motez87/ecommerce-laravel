@@ -45,14 +45,19 @@
             <p>Bienvenue dans l'espace administrateur, <strong>{{ Auth::user()->name }}</strong> !</p>
             <hr>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="{{ route('admin.users') }}" class="btn btn-outline-primary w-100 mb-2">
                         <i class="fas fa-users"></i> Gérer les utilisateurs
                     </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="{{ route('admin.products') }}" class="btn btn-outline-success w-100 mb-2">
                         <i class="fas fa-boxes"></i> Gérer les produits
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-info w-100 mb-2">
+                        <i class="fas fa-shopping-cart"></i> Gérer les commandes
                     </a>
                 </div>
             </div>

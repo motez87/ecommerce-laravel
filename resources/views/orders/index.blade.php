@@ -44,7 +44,6 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-primary">Voir détails</a>
-                                    <a href="{{ route('orders.invoice', $order) }}" class="btn btn-sm btn-info">Facture</a>
                                     
                                     @if($order->status == 'pending')
                                     <form action="{{ route('orders.cancel', $order) }}" method="POST" class="d-inline">
